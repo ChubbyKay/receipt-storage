@@ -23,10 +23,29 @@ module.exports = {
         updatedAt: new Date()
       }
     ], {})
-    queryInterface.bulkInsert('Receipts',
-      Array.from({ length: 5 }).map((item, index) => ({
+    queryInterface.bulkInsert('Tags', [
+      {
+        id: 1,
+        name: 'food',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }, {
+        id: 2,
+        name: 'entertainment',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }, {
+        id: 3,
+        name: 'home',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }
+    ], {})
+    return queryInterface.bulkInsert('Receipts',
+      Array.from({ length: 7 }).map((item, index) => ({
         id: index + 1,
         UserId: (index % 2) + 1,
+        TagID: (index % 3) + 1,
         merchant: faker.company.companyName(),
         date: faker.date.past(),
         item: faker.commerce.productName(),
@@ -34,24 +53,9 @@ module.exports = {
         quantity: faker.random.number({ min: 1, max: 3 }),
         amount: faker.finance.amount(),
         payment: "cash",
-        tag: "food",
         createdAt: new Date(),
         updatedAt: new Date()
       })), {})
-    return queryInterface.bulkInsert('Receipts', [{
-      id: 6,
-      UserId: 1,
-      merchant: faker.company.companyName(),
-      date: faker.date.past(),
-      item: faker.commerce.productName(),
-      price: faker.commerce.price(),
-      quantity: faker.random.number({ min: 1, max: 3 }),
-      amount: faker.finance.amount(),
-      payment: "VISA",
-      tag: "entertainment",
-      createdAt: new Date(),
-      updatedAt: new Date()
-    }], {})
     /**
      * Add seed commands here.
      *
@@ -64,6 +68,7 @@ module.exports = {
   },
   down: (queryInterface, Sequelize) => {
     queryInterface.bulkDelete('Users', null, {})
+    queryInterface.bulkDelete('Tags', null, {})
     return queryInterface.bulkDelete('Receipts', null, {})
     /**
      * Add commands to revert seed here.

@@ -2,6 +2,7 @@ const bcrypt = require('bcryptjs')
 const db = require('../models')
 const User = db.User
 const Receipt = db.Receipt
+const Tag = db.Tag
 
 const userController = {
   signUpPage: (req, res) => {
@@ -51,7 +52,9 @@ const userController = {
   },
 
   getReceipts: (req, res) => {
-    return Receipt.findAll({ raw: true }).then(receipts => {
+    return Receipt.findAll({
+      raw: true, nest: true, include: [Tag]
+    }).then(receipts => {
       return res.render('user/receipts', { receipts: receipts })
     })
   }

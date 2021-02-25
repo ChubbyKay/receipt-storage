@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Receipt.belongsTo(models.Tag)
     }
   };
   Receipt.init({

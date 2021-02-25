@@ -10,20 +10,19 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Receipt.belongsTo(models.User)
       // define association here
     }
   };
   Receipt.init({
     UserID: DataTypes.INTEGER,
+    TagID: DataTypes.INTEGER,
     merchant: DataTypes.STRING,
     date: DataTypes.DATE,
     item: DataTypes.STRING,
     price: DataTypes.FLOAT,
     quantity: DataTypes.INTEGER,
     amount: DataTypes.FLOAT,
-    payment: DataTypes.STRING,
-    tag: DataTypes.STRING
+    payment: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Receipt',

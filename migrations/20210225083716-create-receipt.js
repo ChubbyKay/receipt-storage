@@ -11,6 +11,9 @@ module.exports = {
       UserID: {
         type: Sequelize.INTEGER
       },
+      TagID: {
+        type: Sequelize.INTEGER
+      },
       merchant: {
         type: Sequelize.STRING
       },
@@ -30,9 +33,6 @@ module.exports = {
         type: Sequelize.FLOAT
       },
       payment: {
-        type: Sequelize.STRING
-      },
-      tag: {
         type: Sequelize.STRING
       },
       createdAt: {

@@ -1,0 +1,50 @@
+<br />
+<br />
+
+<h1>Receipts Storage</h1>
+
+<a href='/user/receipts/create'>
+  <button type="button" class="btn btn-primary">New Receipt</button>
+</a>
+
+<br />
+<br />
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Merchant</th>
+      <th scope="col">Date</th>
+      <th scope="col">Item</th>
+      <th scope="col">Amount</th>
+      <th scope="col">#</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each receipts}}
+    <tr>
+      <th scope="row">{{this.id}}</th>
+      <td>{{this.merchant}}</td>
+      <td>{{this.date}}</td>
+      <td>{{this.item}}</td>
+      <td>{{this.amount}}</td>
+      <td>
+        <button type="button" class="btn btn-link">
+          <a href="/user/receipts/{{this.id}}">
+            Show
+          </a>
+        </button>
+        <button type="button" class="btn btn-link">
+          <a href="/user/receipts/{{this.id}}/edit">
+            Edit
+          </a>
+        </button>
+        <form action="/user/receipts/{{this.id}}?_method=DELETE" method="POST" style="display: inline;">
+          <button type="submit" class="btn btn-link">Delete</button>
+        </form>
+      </td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>

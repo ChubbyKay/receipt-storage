@@ -1,6 +1,7 @@
 const bcrypt = require('bcryptjs')
 const db = require('../models')
 const User = db.User
+const Receipt = db.Receipt
 
 const userController = {
   signUpPage: (req, res) => {
@@ -37,19 +38,22 @@ const userController = {
       })
     }
   },
-
   signInPage: (req, res) => {
     return res.render('signin')
   },
-
   signIn: (req, res) => {
     req.flash('success_messages', '登入成功')
-    res.redirect('/receipts')
+    res.redirect('/user/receipts')
   },
-
   signOut: (req, res) => {
     req.flash('success_messages', '用戶已登出')
     res.redirect('/signin')
+  },
+
+  getReceipts: (req, res) => {
+    return Receipt.findAll({ raw: true }).then(receipts => {
+      return res.render('user/receipts', { receipts: receipts })
+    })
   }
 }
 module.exports = userController

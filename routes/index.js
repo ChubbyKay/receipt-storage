@@ -7,16 +7,14 @@ const receiptController = require('../controllers/receriptController')
 const userController = require('../controllers/userController')
 
 module.exports = (app, passport) => {
-  app.get('/', (req, res) => { res.redirect('/receipts') })
-  app.get('/receipts', receiptController.getReceipts)
-
-
   const authenticated = (req, res, next) => {
     if (req.isAuthenticated()) {
       return next()
     }
     res.redirect('/signin')
   }
+  app.get('/', authenticated, (req, res) => { res.redirect('/receipts') })
+  app.get('/receipts', authenticated, receiptController.getReceipts)
 
   // 登入及登出路由設定
   app.get('/signup', userController.signUpPage)
@@ -26,8 +24,8 @@ module.exports = (app, passport) => {
   app.get('/signOut', userController.signOut)
 
   // 發票相關路由設定
-  app.get('/user', (req, res) => { res.redirect('/user/receipts') })
-  app.get('/user/receipts', userController.getReceipts)
+  app.get('/user', authenticated, (req, res) => { res.redirect('/user/receipts') })
+  app.get('/user/receipts', authenticated, userController.getReceipts)
 
   // module.exports = router
 

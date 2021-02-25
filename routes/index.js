@@ -3,18 +3,16 @@
 
 // const passport = require('../config/passport')
 
-const receiptController = require('../controllers/receriptController')
 const userController = require('../controllers/userController')
 
 module.exports = (app, passport) => {
+  // 使用者認證檢查
   const authenticated = (req, res, next) => {
     if (req.isAuthenticated()) {
       return next()
     }
     res.redirect('/signin')
   }
-  app.get('/', authenticated, (req, res) => { res.redirect('/receipts') })
-  app.get('/receipts', authenticated, receiptController.getReceipts)
 
   // 登入及登出路由設定
   app.get('/signup', userController.signUpPage)

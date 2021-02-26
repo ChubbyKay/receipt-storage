@@ -80,6 +80,36 @@ const userController = {
         req.flash('success_messages', '成功建立發票')
         res.redirect('/user/receipts')
       })
+  },
+  editReceipt: (req, res) => {
+    Tag.findAll({
+      raw: true,
+      nest: true
+    }).then(tags => {
+      return Receipt.findByPk(req.params.id, { raw: true })
+        .then(receipt => {
+          return res.render('user/create', {
+            tags: tags,
+            receipt: receipt,
+          })
+        })
+    })
+  },
+  putReceipt: (req, res) => {
+    Receipt.findByPk(req.params.id)
+      .then((receipt) => {
+        receipt.update({
+          merchant: req.body.merchant,
+          TagId: req.body.tagId,
+          item: req.body.item,
+          amount: req.body.amount,
+          date: req.body.date,
+        })
+          .then((receipt) => {
+            req.flash('success_messages', '成功更新發票資訊')
+            res.redirect('/user/receipts')
+          })
+      })
   }
 }
 module.exports = userController

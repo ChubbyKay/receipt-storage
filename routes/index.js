@@ -26,6 +26,9 @@ module.exports = (app, passport) => {
   app.get('/user/receipts', authenticated, userController.getReceipts)
   app.get('/user/create', authenticated, userController.createReceipt)
   app.post('/user/receipts', authenticated, userController.postReceipt)
+  app.get('/user/receipts/:id/edit', authenticated, userController.editReceipt)
+  app.put('/user/receipts/:id', authenticated, userController.putReceipt)
+
   // module.exports = router
 
 }

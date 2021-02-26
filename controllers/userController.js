@@ -72,7 +72,6 @@ const userController = {
     return Receipt.create({
       merchant: req.body.merchant,
       TagId: req.body.tagId,
-      receiptId: req.body.receiptId,
       item: req.body.item,
       amount: req.body.amount,
       date: req.body.date,

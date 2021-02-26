@@ -1,0 +1,41 @@
+<br />
+<br />
+<form action="/user/receipts" method="POST">
+  <div class="form-group">
+    <label for="name">Merchant</label>
+    <input type="text" class="form-control" name="merchant" id="merchant" placeholder="Enter Merchant">
+  </div>
+
+  <div class="form-group">
+    <label for="tagId">Tag</label>
+    <select class="form-control" id="tagId" name="tagId">
+      {{#each tags}}
+      <option value="{{this.id}}" {{#ifCond this.id ../receipt.tagId}} selected {{/ifCond}}>
+        {{this.name}}
+      </option>
+      {{/each}}
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="receiptId">Receipt ID</label>
+    <input type="text" class="form-control" name="receiptId" id="receiptId" placeholder="Enter Receipt ID">
+  </div>
+
+  <div class="form-group">
+    <label for="item">Item</label>
+    <input type="text" class="form-control" name="item" id="item" placeholder="Enter item">
+  </div>
+
+  <div class="form-group">
+    <label for="amount">Amount</label>
+    <input type="number" class="form-control" name="amount" id="amount" placeholder="Enter amount">
+  </div>
+
+  <div class="form-group">
+    <label for="date">Receipt Date</label>
+    <input type="date" class="form-control" name="date" id="date" placeholder="Enter receipt date">
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>

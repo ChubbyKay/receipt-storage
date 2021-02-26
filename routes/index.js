@@ -24,7 +24,8 @@ module.exports = (app, passport) => {
   // 發票相關路由設定
   app.get('/user', authenticated, (req, res) => { res.redirect('/user/receipts') })
   app.get('/user/receipts', authenticated, userController.getReceipts)
-
+  app.get('/user/create', authenticated, userController.createReceipt)
+  app.post('/user/receipts', authenticated, userController.postReceipt)
   // module.exports = router
 
 }

@@ -57,6 +57,30 @@ const userController = {
     }).then(receipts => {
       return res.render('user/receipts', { receipts: receipts })
     })
+  },
+  createReceipt: (req, res) => {
+    Tag.findAll({
+      raw: true,
+      nest: true
+    }).then(tags => {
+      return res.render('user/create', {
+        tags: tags
+      })
+    })
+  },
+  postReceipt: (req, res) => {
+    return Receipt.create({
+      merchant: req.body.merchant,
+      TagId: req.body.tagId,
+      receiptId: req.body.receiptId,
+      item: req.body.item,
+      amount: req.body.amount,
+      date: req.body.date,
+    })
+      .then((receipt) => {
+        req.flash('success_messages', '成功建立發票')
+        res.redirect('/user/receipts')
+      })
   }
 }
 module.exports = userController

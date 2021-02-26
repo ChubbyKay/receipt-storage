@@ -99,11 +99,7 @@ const userController = {
     Receipt.findByPk(req.params.id)
       .then((receipt) => {
         receipt.update({
-          merchant: req.body.merchant,
           TagId: req.body.tagId,
-          item: req.body.item,
-          amount: req.body.amount,
-          date: req.body.date,
         })
           .then((receipt) => {
             req.flash('success_messages', '成功更新發票資訊')

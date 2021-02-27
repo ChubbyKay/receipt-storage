@@ -5,6 +5,7 @@
 
 const userController = require('../controllers/userController')
 const tagController = require('../controllers/tagController')
+const receiptController = require('../controllers/receiptController')
 
 module.exports = (app, passport) => {
   // 使用者認證檢查
@@ -23,12 +24,13 @@ module.exports = (app, passport) => {
   app.get('/signOut', userController.signOut)
 
   // 發票相關路由設定
+  app.get('/', authenticated, (req, res) => { res.redirect('/user/receipts') })
   app.get('/user', authenticated, (req, res) => { res.redirect('/user/receipts') })
-  app.get('/user/receipts', authenticated, userController.getReceipts)
-  app.get('/user/create', authenticated, userController.createReceipt)
-  app.post('/user/receipts', authenticated, userController.postReceipt)
-  app.get('/user/receipts/:id/edit', authenticated, userController.editReceipt)
-  app.put('/user/receipts/:id', authenticated, userController.putReceipt)
+  app.get('/user/receipts', authenticated, receiptController.getReceipts)
+  app.get('/user/create', authenticated, receiptController.createReceipt)
+  app.post('/user/receipts', authenticated, receiptController.postReceipt)
+  app.get('/user/receipts/:id/edit', authenticated, receiptController.editReceipt)
+  app.put('/user/receipts/:id', authenticated, receiptController.putReceipt)
 
   // 標籤相關路由設定
   app.get('/user/tags', authenticated, tagController.getTags)

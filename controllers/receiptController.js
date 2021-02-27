@@ -1,13 +1,32 @@
+const { database } = require('faker')
 const db = require('../models')
 const Receipt = db.Receipt
 const Tag = db.Tag
 
 const receiptController = {
   getReceipts: (req, res) => {
-    return Receipt.findAll({
-      raw: true, nest: true, include: [Tag]
+    const whereQuery = {}
+    let tagId = ''
+    if (req.query.tagId) {
+      tagId = Number(req.query.tagId)
+      whereQuery.TagId = tagId
+    }
+    Receipt.findAll({
+      raw: true,
+      nest: true,
+      include: [Tag],
+      where: whereQuery
     }).then((receipts) => {
-      return res.render('user/receipts', { receipts: receipts })
+      Tag.findAll({
+        raw: true,
+        nest: true
+      }).then((tags) => {
+        return res.render('user/receipts', {
+          receipts: receipts,
+          tags: tags,
+          tagId: tagId
+        })
+      })
     })
   },
   createReceipt: (req, res) => {

@@ -9,9 +9,21 @@
 <a href='/create'>
   <button type="button" class="btn btn-primary">New Receipt</button>
 </a>
+<br />
+<br />
+<ul class="nav nav-pills">
+  <li class="nav-item">
+    <a class="nav-link {{#ifCond '' tagId}}active{{/ifCond}}" href="?tagId=">all</a>
+  </li>
+  {{#each tags}}
+  <li class="nav-item">
+    <a class="nav-link {{#ifCond this.id ../tagId}}active{{/ifCond}}" href="?tagId={{this.id}}">{{this.name}}</a>
+  </li>
+  {{/each}}
+</ul>
+<br />
 
-<br />
-<br />
+
 
 <table class="table">
   <thead class="thead-dark">

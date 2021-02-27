@@ -35,6 +35,15 @@ const tagController = {
             res.redirect('/user/tags')
           })
       })
+  },
+  deleteTag: (req, res) => {
+    return Tag.findByPk(req.params.id)
+      .then((tag) => {
+        tag.destroy()
+          .then((tag) => {
+            res.redirect('/user/tags')
+          })
+      })
   }
 }
 module.exports = tagController

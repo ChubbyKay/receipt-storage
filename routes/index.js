@@ -35,6 +35,7 @@ module.exports = (app, passport) => {
   app.post('/user/tags', authenticated, tagController.postTag)
   app.get('/user/tags/:id', authenticated, tagController.getTags)
   app.put('/user/tags/:id', authenticated, tagController.putTag)
+  app.delete('/user/tags/:id', authenticated, tagController.deleteTag)
 
   // module.exports = router
 

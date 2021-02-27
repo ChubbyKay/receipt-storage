@@ -9,6 +9,13 @@ const tagController = {
     }).then(tags => {
       return res.render('user/tags', { tags: tags })
     })
+  },
+  postTag: (req, res) => {
+    return Tag.create({
+      name: req.body.name
+    }).then(tags => {
+      return res.redirect('/user/tags')
+    })
   }
 }
 module.exports = tagController

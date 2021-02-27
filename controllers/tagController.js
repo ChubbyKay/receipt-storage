@@ -7,7 +7,17 @@ const tagController = {
       raw: true,
       nest: true
     }).then(tags => {
-      return res.render('user/tags', { tags: tags })
+      if (req.params.id) {
+        Tag.findByPk(req.params.id)
+          .then((tag) => {
+            return res.render('user/tags', {
+              tags: tags,
+              tag: tag.toJSON()
+            })
+          })
+      } else {
+        return res.render('user/tags', { tags: tags })
+      }
     })
   },
   postTag: (req, res) => {
@@ -16,6 +26,15 @@ const tagController = {
     }).then(tags => {
       return res.redirect('/user/tags')
     })
+  },
+  putTag: (req, res) => {
+    return Tag.findByPk(req.params.id)
+      .then((tag) => {
+        tag.update(req.body)
+          .then((tag) => {
+            res.redirect('/user/tags')
+          })
+      })
   }
 }
 module.exports = tagController

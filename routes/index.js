@@ -33,7 +33,8 @@ module.exports = (app, passport) => {
   // 標籤相關路由設定
   app.get('/user/tags', authenticated, tagController.getTags)
   app.post('/user/tags', authenticated, tagController.postTag)
-
+  app.get('/user/tags/:id', authenticated, tagController.getTags)
+  app.put('/user/tags/:id', authenticated, tagController.putTag)
 
   // module.exports = router
 

@@ -6,10 +6,18 @@
 <br />
 <br />
 <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded shadow-sm">
+  {{#if tag}}
+  <form action="/user/tags/{{tag.id}}?_method=PUT" method="POST">
+    <input type="text" placeholder="name" name="name" value="{{tag.name}}">
+    <button type="submit">Update</button>
+    <a href="/user/tags">or Create New</a>
+  </form>
+  {{else}}
   <form action="/user/tags" method="POST">
     <input type="text" placeholder="name" name="name">
     <button type="submit">Submit</button>
   </form>
+  {{/if}}
 </div>
 <br />
 <br />

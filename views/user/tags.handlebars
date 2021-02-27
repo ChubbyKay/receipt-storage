@@ -1,19 +1,19 @@
 <br />
 <br />
 <h1>Tags</h1>
-<a href='/user/receipts'>Receipts</a> |
-<a href='/user/tags'>Tags</a>
+<a href='/receipts'>Receipts</a> |
+<a href='/tags'>Tags</a>
 <br />
 <br />
 <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded shadow-sm">
   {{#if tag}}
-  <form action="/user/tags/{{tag.id}}?_method=PUT" method="POST">
+  <form action="/tags/{{tag.id}}?_method=PUT" method="POST">
     <input type="text" placeholder="name" name="name" value="{{tag.name}}">
     <button type="submit">Update</button>
-    <a href="/user/tags">or Create New</a>
+    <a href="/tags">or Create New</a>
   </form>
   {{else}}
-  <form action="/user/tags" method="POST">
+  <form action="/tags" method="POST">
     <input type="text" placeholder="name" name="name">
     <button type="submit">Submit</button>
   </form>
@@ -36,11 +36,11 @@
       <td>{{this.name}}</td>
       <td>
         <button type="button" class="btn btn-link">
-          <a href="/user/tags/{{this.id}}">
+          <a href="/tags/{{this.id}}">
             Edit
           </a>
         </button>
-        <form action="/user/tags/{{this.id}}?_method=DELETE" method="POST" style="display: inline;">
+        <form action="/tags/{{this.id}}?_method=DELETE" method="POST" style="display: inline;">
           <button type="submit" class="btn btn-link">Delete</button>
         </form>
       </td>

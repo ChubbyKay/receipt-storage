@@ -25,19 +25,19 @@ module.exports = (app, passport) => {
 
   // 發票相關路由設定
   app.get('/', authenticated, (req, res) => { res.redirect('/user/receipts') })
-  app.get('/user', authenticated, (req, res) => { res.redirect('/user/receipts') })
-  app.get('/user/receipts', authenticated, receiptController.getReceipts)
-  app.get('/user/create', authenticated, receiptController.createReceipt)
-  app.post('/user/receipts', authenticated, receiptController.postReceipt)
-  app.get('/user/receipts/:id/edit', authenticated, receiptController.editReceipt)
-  app.put('/user/receipts/:id', authenticated, receiptController.putReceipt)
+  // app.get('/user', authenticated, (req, res) => { res.redirect('/user/receipts') })
+  app.get('/receipts', authenticated, receiptController.getReceipts)
+  app.get('/create', authenticated, receiptController.createReceipt)
+  app.post('/receipts', authenticated, receiptController.postReceipt)
+  app.get('/receipts/:id/edit', authenticated, receiptController.editReceipt)
+  app.put('/receipts/:id', authenticated, receiptController.putReceipt)
 
   // 標籤相關路由設定
-  app.get('/user/tags', authenticated, tagController.getTags)
-  app.post('/user/tags', authenticated, tagController.postTag)
-  app.get('/user/tags/:id', authenticated, tagController.getTags)
-  app.put('/user/tags/:id', authenticated, tagController.putTag)
-  app.delete('/user/tags/:id', authenticated, tagController.deleteTag)
+  app.get('/tags', authenticated, tagController.getTags)
+  app.post('/tags', authenticated, tagController.postTag)
+  app.get('/tags/:id', authenticated, tagController.getTags)
+  app.put('/tags/:id', authenticated, tagController.putTag)
+  app.delete('/tags/:id', authenticated, tagController.deleteTag)
 
   // module.exports = router
 

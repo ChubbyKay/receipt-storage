@@ -24,7 +24,7 @@ const tagController = {
     return Tag.create({
       name: req.body.name
     }).then(tags => {
-      return res.redirect('/user/tags')
+      return res.redirect('/tags')
     })
   },
   putTag: (req, res) => {
@@ -32,7 +32,7 @@ const tagController = {
       .then((tag) => {
         tag.update(req.body)
           .then((tag) => {
-            res.redirect('/user/tags')
+            res.redirect('/tags')
           })
       })
   },
@@ -41,7 +41,7 @@ const tagController = {
       .then((tag) => {
         tag.destroy()
           .then((tag) => {
-            res.redirect('/user/tags')
+            res.redirect('/tags')
           })
       })
   }

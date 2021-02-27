@@ -30,7 +30,7 @@ const receiptController = {
     })
       .then((receipt) => {
         req.flash('success_messages', '成功建立發票')
-        res.redirect('/user/receipts')
+        res.redirect('/receipts')
       })
   },
   editReceipt: (req, res) => {
@@ -55,7 +55,7 @@ const receiptController = {
         })
           .then((receipt) => {
             req.flash('success_messages', '成功更新發票資訊')
-            res.redirect('/user/receipts')
+            res.redirect('/receipts')
           })
       })
   }

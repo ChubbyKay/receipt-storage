@@ -1,9 +1,9 @@
 <br />
 <br />
 {{#if receipt}}
-<form action="/user/receipts/{{receipt.id}}?_method=PUT" method="POST">
+<form action="/receipts/{{receipt.id}}?_method=PUT" method="POST">
   {{else}}
-  <form action="/user/receipts" method="POST">
+  <form action="/receipts" method="POST">
     {{/if}}
     <div class="form-group">
       <label for="name">Merchant</label>

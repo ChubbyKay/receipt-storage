@@ -42,7 +42,7 @@ const userController = {
   },
   signIn: (req, res) => {
     req.flash('success_messages', '登入成功')
-    res.redirect('/user/receipts')
+    res.redirect('/receipts')
   },
   signOut: (req, res) => {
     req.flash('success_messages', '用戶已登出')

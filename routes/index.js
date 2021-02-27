@@ -4,6 +4,7 @@
 // const passport = require('../config/passport')
 
 const userController = require('../controllers/userController')
+const tagController = require('../controllers/tagController')
 
 module.exports = (app, passport) => {
   // 使用者認證檢查
@@ -28,6 +29,10 @@ module.exports = (app, passport) => {
   app.post('/user/receipts', authenticated, userController.postReceipt)
   app.get('/user/receipts/:id/edit', authenticated, userController.editReceipt)
   app.put('/user/receipts/:id', authenticated, userController.putReceipt)
+
+  // 標籤相關路由設定
+  app.get('/user/tags', authenticated, tagController.getTags)
+
 
   // module.exports = router
 

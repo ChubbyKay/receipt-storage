@@ -37,9 +37,6 @@ const receiptController = {
     }
   },
   putReceipt: (req, res, callback) => {
-    if (!req.body.TagId) {
-      return callback({ status: 'error', message: "請選擇標籤" })
-    }
     return Receipt.findByPk(req.params.id)
       .then((receipt) => {
         receipt.update({

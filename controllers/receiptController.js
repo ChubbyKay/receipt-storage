@@ -46,10 +46,7 @@ const receiptController = {
   },
   putReceipt: (req, res) => {
     receiptService.putReceipt(req, res, (data) => {
-      if (data['status'] === 'error') {
-        req.flash('error_messages', data['message'])
-        return res.redirect('back')
-      } else {
+      if (data['status'] === 'success') {
         req.flash('success_messages', data['message'])
         res.redirect('/receipts')
       }

@@ -21,8 +21,8 @@ PORT=3000
 
 ## 網頁介紹
 
-利用 Node.js、Express 以及 MySQL 建置的 Receipt-Storage 專案。
-撰寫方式包含全端開發，以及後端 API 開發。
+利用 Node.js、Express 以及 MySQL 建置的 Receipt-Storage 專案。  
+撰寫方式包含後端 API 開發，以及全端開發。
 主要功能為，使用者可自行上傳發票內容，並可針對該筆發票進行分類（標籤），作為消費紀錄整理。
 
 

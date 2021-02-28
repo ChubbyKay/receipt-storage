@@ -1,32 +1,12 @@
-const { database } = require('faker')
 const db = require('../models')
 const Receipt = db.Receipt
 const Tag = db.Tag
+const receiptService = require('../services/receiptService')
 
 const receiptController = {
   getReceipts: (req, res) => {
-    const whereQuery = {}
-    let tagId = ''
-    if (req.query.tagId) {
-      tagId = Number(req.query.tagId)
-      whereQuery.TagId = tagId
-    }
-    Receipt.findAll({
-      raw: true,
-      nest: true,
-      include: [Tag],
-      where: whereQuery
-    }).then((receipts) => {
-      Tag.findAll({
-        raw: true,
-        nest: true
-      }).then((tags) => {
-        return res.render('user/receipts', {
-          receipts: receipts,
-          tags: tags,
-          tagId: tagId
-        })
-      })
+    receiptService.getReceipts(req, res, (data) => {
+      return res.render('user/receipts', data)
     })
   },
   createReceipt: (req, res) => {
@@ -40,17 +20,15 @@ const receiptController = {
     })
   },
   postReceipt: (req, res) => {
-    return Receipt.create({
-      merchant: req.body.merchant,
-      TagId: req.body.tagId,
-      item: req.body.item,
-      amount: req.body.amount,
-      date: req.body.date,
-    })
-      .then((receipt) => {
-        req.flash('success_messages', '成功建立發票')
+    receiptService.postReceipt(req, res, (data) => {
+      if (data['status'] === 'error') {
+        req.flash('error_messages', data['message'])
+        return res.redirect('back')
+      } else {
+        req.flash('success_messages', data['message'])
         res.redirect('/receipts')
-      })
+      }
+    })
   },
   editReceipt: (req, res) => {
     return Tag.findAll({
@@ -67,16 +45,15 @@ const receiptController = {
     })
   },
   putReceipt: (req, res) => {
-    return Receipt.findByPk(req.params.id)
-      .then((receipt) => {
-        receipt.update({
-          TagId: req.body.tagId,
-        })
-          .then((receipt) => {
-            req.flash('success_messages', '成功更新發票資訊')
-            res.redirect('/receipts')
-          })
-      })
-  }
+    receiptService.putReceipt(req, res, (data) => {
+      if (data['status'] === 'error') {
+        req.flash('error_messages', data['message'])
+        return res.redirect('back')
+      } else {
+        req.flash('success_messages', data['message'])
+        res.redirect('/receipts')
+      }
+    })
+  },
 }
 module.exports = receiptController

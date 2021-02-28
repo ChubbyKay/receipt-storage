@@ -1,14 +1,20 @@
-const db = require('../../models')
-const Receipt = db.Receipt
-const Tag = db.Tag
+const receiptService = require('../../services/receiptService')
 
 const receiptController = {
   getReceipts: (req, res) => {
-    return Receipt.findAll({
-      raw: true, nest: true, include: [Tag]
-    }).then(receipts => {
-      return res.json({ receipts: receipts })
+    receiptService.getReceipts(req, res, (data) => {
+      return res.json(data)
     })
-  }
+  },
+  postReceipt: (req, res) => {
+    receiptService.postReceipt(req, res, (data) => {
+      return res.json(data)
+    })
+  },
+  putReceipt: (req, res) => {
+    receiptService.putReceipt(req, res, (data) => {
+      return res.json(data)
+    })
+  },
 }
 module.exports = receiptController

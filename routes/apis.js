@@ -6,7 +6,8 @@ const tagController = require('../controllers/api/tagController')
 
 // 發票相關路由
 router.get('/receipts', receiptController.getReceipts)
-
+router.post('/receipts', receiptController.postReceipt)
+router.put('/receipts/:id', receiptController.putReceipt)
 
 // 標籤相關路由
 router.get('/tags', tagController.getTags)

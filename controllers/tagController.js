@@ -1,5 +1,3 @@
-const db = require('../models')
-const Tag = db.Tag
 const tagService = require('../services/tagService')
 
 const tagController = {
@@ -8,24 +6,6 @@ const tagController = {
       return res.render('user/tags', data)
     })
   },
-  // getTags: (req, res) => {
-  //   return Tag.findAll({
-  //     raw: true,
-  //     nest: true
-  //   }).then(tags => {
-  //     if (req.params.id) {
-  //       Tag.findByPk(req.params.id)
-  //         .then((tag) => {
-  //           return res.render('user/tags', {
-  //             tags: tags,
-  //             tag: tag.toJSON()
-  //           })
-  //         })
-  //     } else {
-  //       return res.render('user/tags', { tags: tags })
-  //     }
-  //   })
-  // },
   postTag: (req, res) => {
     tagService.postTag(req, res, (data) => {
       if (data['status'] === 'error') {
@@ -48,15 +28,6 @@ const tagController = {
       }
     })
   },
-  // putTag: (req, res) => {
-  //   return Tag.findByPk(req.params.id)
-  //     .then((tag) => {
-  //       tag.update(req.body)
-  //         .then((tag) => {
-  //           res.redirect('/tags')
-  //         })
-  //     })
-  // },
   deleteTag: (req, res) => {
     tagService.deleteTag(req, res, (data) => {
       if (data['status'] === 'success') {
@@ -64,15 +35,5 @@ const tagController = {
       }
     })
   }
-
-  // deleteTag: (req, res) => {
-  //   return Tag.findByPk(req.params.id)
-  //     .then((tag) => {
-  //       tag.destroy()
-  //         .then((tag) => {
-  //           res.redirect('/tags')
-  //         })
-  //     })
-  // }
 }
 module.exports = tagController

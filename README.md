@@ -10,7 +10,6 @@ Password : 12345678
 
 email	: user2@example.com
 Password : 12345678
-
 ```
 
 ## 相關環境變數
@@ -18,7 +17,6 @@ env.example
 ```
 JWT_SECRET=aimazing
 PORT=3000
-
 ```
 
 ## 網頁介紹
@@ -44,7 +42,7 @@ PORT=3000
 
 ## Features
 
-- 註冊/登入/登出
+- 登入/登出
 - 使用者進入首頁後，可以操作:
   - 查看所有發票內容
   - 新增發票文本，並附上標籤
@@ -102,7 +100,7 @@ npm run seed
 nodemon app.js
 ```
 
-10.當 terminal 出現以下字樣，表示伺服器已啟動並成功連結
+9.當 terminal 出現以下字樣，表示伺服器已啟動並成功連結
 
 ```
 Express is listening on localhost:3000

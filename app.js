@@ -1,3 +1,7 @@
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
+
 const express = require('express')
 const handlebars = require('express-handlebars')
 const bodyParser = require('body-parser')
@@ -6,11 +10,7 @@ const flash = require('connect-flash')
 const methodOverride = require('method-override')
 
 const app = express()
-const port = 3000
-
-if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').config()
-}
+const port = process.env.PORT || 3000
 
 const passport = require('./config/passport')
 

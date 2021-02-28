@@ -8,6 +8,35 @@ const ExtractJwt = passportJWT.ExtractJwt
 const JwtStrategy = passportJWT.Strategy
 
 let userController = {
+  signUp: (req, res) => {
+    if (req.body.checkPassword !== req.body.password) {
+      req.flash('error_messages', '請再次確認密碼')
+      return res.redirect('/signup')
+    } else {
+      User.findOne({ where: { email: req.body.email } }).then(user => {
+        if (user) {
+          req.flash('error_messages', '信箱已註冊')
+          return res.redirect('/signup')
+        } else {
+          User.findOne({ where: { account: req.body.account } }).then(user => {
+            if (user) {
+              req.flash('error_messages', '帳號已註冊!')
+              return res.redirect('/signup')
+            } else {
+              User.create({
+                email: req.body.email,
+                name: req.body.name,
+                account: req.body.account,
+                password: bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10), null)
+              }).then((user) => {
+                return res.json({ status: 'success', message: '帳號註冊成功' })
+              })
+            }
+          })
+        }
+      })
+    }
+  },
   signIn: (req, res) => {
     if (!req.body.email || !req.body.password) {
       return res.json({ status: 'error', message: "請確實填寫登入資訊" })

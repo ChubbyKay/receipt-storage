@@ -9,6 +9,7 @@ const userController = require('../controllers/api/userController')
 const authenticated = passport.authenticate('jwt', { session: false })
 
 //登入&登出路由
+router.post('/signup', userController.signUp)
 router.post('/signin', userController.signIn)
 
 // 發票相關路由

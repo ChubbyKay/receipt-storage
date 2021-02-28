@@ -22,7 +22,7 @@ router.post('/signin', passport.authenticate('local', { failureRedirect: '/signi
 router.get('/signOut', userController.signOut)
 
 // 發票相關路由設定
-router.get('/', authenticated, (req, res) => { res.redirect('/user/receipts') })
+router.get('/', authenticated, (req, res) => { res.redirect('/receipts') })
 router.get('/receipts', authenticated, receiptController.getReceipts)
 router.get('/create', authenticated, receiptController.createReceipt)
 router.post('/receipts', authenticated, receiptController.postReceipt)

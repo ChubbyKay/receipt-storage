@@ -15,7 +15,7 @@ Password : 12345678
 ## 相關環境變數
 env.example
 ```
-JWT_SECRET=aimazing
+JWT_SECRET=SKIP
 PORT=3000
 ```
 
